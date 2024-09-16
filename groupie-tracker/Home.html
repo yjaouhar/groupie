@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie Trackers</title>
+   
+</head>
+<body>
+    <h1>Groupie Trackers</h1>
+    <form id="filters">
+        <h3>Filters</h3>
+        
+        <div>
+            <label>Creation Date Range:</label>
+            <input type="number" name="creationDateMin" min="1900" max="2024">
+            <input type="number" name="creationDateMax" min="1900" max="2024">
+        </div>
+        
+        <div>
+            <label>First Album Date Range:</label>
+            <input type="number" name="firstAlbumDateMin" min="1900" max="2024">
+            <input type="number" name="firstAlbumDateMax" min="1900" max="2024">
+        </div>
+        
+        <div>
+            <label>Number of Members:</label>
+            <input type="checkbox" name="memberCount" value="1"> 1
+            <input type="checkbox" name="memberCount" value="2"> 2
+            <input type="checkbox" name="memberCount" value="3"> 3
+            <input type="checkbox" name="memberCount" value="4+"> 4+
+        </div>
+        
+        <div>
+            <label>Locations:</label>
+            <input type="text" name="locationSearch" placeholder="Search locations">
+            <div id="locationCheckboxes">
+                <!-- This will be populated dynamically with JavaScript -->
+            </div>
+        </div>
+        
+        <button type="submit">Apply Filters</button>
+    </form>
+
+
+
+    <h2>Artists and Relations</h2>
+    <div class="container">
+        {{range .DATA}}
+        <div class="artist">
+            <h1>{{.Name}}</h1>
+            <img src="{{.Image}}" alt="{{.Name}}">
+        </div>
+        <form action="/Info" method="post">
+        <input type="hidden" name="ID" value="{{.ID}}">
+        <input class="btsubmit" type="submit" value="More Infos">
+    </form>
+        {{end}}
+    </div>
+</body>
+</html>

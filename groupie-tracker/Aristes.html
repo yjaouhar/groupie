@@ -1,0 +1,61 @@
+
+<!-- Aristes.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Artist.Name}} - Groupie Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{.Artist.Name}}</h1>
+    <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}">
+    <h2>Members:</h2>
+    <ul>
+        {{range .Artist.Members}}
+        <li>{{.}}</li>
+        {{end}}
+    </ul>
+    <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
+    <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+    
+    <h2>Locations:</h2>
+    <ul>
+        {{range .Location.Location}}
+        <li>{{.}}</li>
+        {{end}}
+    </ul>
+    
+    <h2>Concert Dates:</h2>
+    <ul>
+        {{range .Dates.Dates}}
+        <li>{{.}}</li>
+        {{end}}
+    </ul>
+    <h2>Relation dates and location</h2>
+    {{range $loca, $dates := .Relation.DatesLocations}}
+        <h3>{{$loca}}</h3>
+        <ul>
+            {{range $date := $dates}}
+            <li>{{$date}}</li>
+            {{end}}
+        </ul>
+    {{end}}
+
+    
+    <a href="/">Back to Home</a>
+</body>
+</html>
